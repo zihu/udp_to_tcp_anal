@@ -1,0 +1,5 @@
+SELECT src, ts, dst
+FROM pcaps
+WHERE protocol = 'UDP' and src like 'WHICHPART'
+ORDER BY src, ts
+;

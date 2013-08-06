@@ -1,0 +1,1 @@
+env PGHOST=fs2.int PGUSER=wessels psql ditl_20130528 -A -t -c "select tld, count from tld limit 50;" | ./gtld_query_stats --tld-list newgtlds.txt --topn 2 | sort -T. -k 2 -rn

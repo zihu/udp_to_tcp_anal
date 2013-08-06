@@ -1,0 +1,12 @@
+DROP TABLE pcaps;
+
+CREATE EXTERNAL TABLE pcaps (ts bigint,
+        protocol string,
+        src string,
+        dst string)
+PARTITIONED BY (yyyymmdd string, site string)
+ROW FORMAT SERDE 'net.ripe.hadoop.pcap.serde.PcapDeserializer'
+STORED AS INPUTFORMAT 'net.ripe.hadoop.pcap.io.DnsPcapInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat';
+
+ALTER TABLE pcaps ADD PARTITION (yyyymmdd='YYYYMMDD',site='SITE') LOCATION '/user/dnscaps/dnscaps/YYYYMMDD/SITE/';

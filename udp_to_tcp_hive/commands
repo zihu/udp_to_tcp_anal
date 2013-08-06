@@ -1,0 +1,2 @@
+cat add-jar.hiveql creat_pcap_table.hiveql | hive -f /dev/fd/0
+cat add-jar.hiveql query.hiveql | hive -f /dev/fd/0 | ./code/srcip_query_stats | sort -k 3 -rn | ./mk_cdf_data.pl
